@@ -2,8 +2,6 @@ package com.marcobehler.trading;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.sql.DataSource;
-
 /**
  * Thanks for watching this episode! If you want to, drop me a line to info@marcobehler.com.
  */
