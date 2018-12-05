@@ -2,6 +2,7 @@ package com.marcobehler.trading;
 
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
@@ -12,23 +13,14 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
 @Configuration
+@ComponentScan
 public class ApplicationContextConfiguration {
 
     @Bean
+    // properties....@Value
     public MailService mailService() {
         return new MailService("localhost", 463, "my@username.com");
     }
-
-    @Bean
-    public UserDao userDao() {
-        return new UserDao(dataSource());
-    }
-
-    @Bean
-    public UserService userService(MailService mailService, UserDao userDao) {
-        return new UserService(mailService, userDao);
-    }
-
 
 
 

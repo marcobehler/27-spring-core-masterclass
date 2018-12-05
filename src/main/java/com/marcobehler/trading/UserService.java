@@ -1,15 +1,19 @@
 package com.marcobehler.trading;
 
-public class UserService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
+//@Service
+public class UserService implements IUserService {
+
+    @Autowired
     private MailService mailService;
+
+    @Autowired // @Inject..@Resource
     private UserDao userDao;
 
-    public UserService(MailService mailService, UserDao userDao) {
-        this.mailService = mailService;
-        this.userDao = userDao;
-    }
-
+    @Override
     public void register(User user) {
         mailService.sendWelcomeEmail(user);
         userDao.save(user);
@@ -18,5 +22,9 @@ public class UserService {
         // 3..risk /balance check....
     }
 
+    @Override
+    public void closeAccount(User user) {
+        System.out.println("Closing the users account: " + user.getEmail());
+    }
 
 }
